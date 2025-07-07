@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Upload - Chhabra Cloth Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background: #f7f7f7;
+    }
+    h1 {
+      text-align: center;
+    }
+    form {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    input[type="file"] {
+      margin: 1rem 0;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    #preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    #preview img,
+    #preview video {
+      max-width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 5px;
+    }
+  </style>
+  <script>
+    // Basic password prompt for admin access
+    const password = prompt("Enter admin password:");
+    if (password !== "9034347274") {
+      alert("Access denied. Redirecting to home page.");
+      window.location.href = "/";
+    }
+  </script>
+</head>
+<body>
+
+  <h1>Upload New Media</h1>
+
+  <form id="upload-form">
+    <input type="file" id="file-input" accept="image/*,video/*" multiple required />
+    <br />
+    <button type="submit">Upload</button>
+  </form>
+
+  <h2>Preview of Uploaded Media</h2>
+  <div id="preview">
+    <p>No media uploaded yet.</p>
+  </div>
+
+  <script>
+    const CLOUD_NAME = "doo9ep02p";        // ← Replace with your Cloudinary cloud name
+    const UPLOAD_PRESET = "shopMediaUpload";  // ← Replace with your unsigned upload preset
+
+    const uploadForm = document.getElementById("upload-form");
+    const fileInput = document.getElementById("file-input");
+    const previewDiv = document.getElementById("preview");
+
+    uploadForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const files = fileInput.files;
+      if (!files.length) {
+        alert("Please select files to upload.");
+        return;
+      }
+
+      previewDiv.innerHTML = "<p>Uploading...</p>";
+
+      const uploadedMedia = [];
+
+      for (let file of files) {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", UPLOAD_PRESET);
+        // Optional: set folder for uploads
+        formData.append("folder", "shop_uploads");
+
+        try {
+          const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/auto/upload`, {
+            method: "POST",
+            body: formData,
+          });
+
+          if (!res.ok) throw new Error("Upload failed");
+
+          const data = await res.json();
+          uploadedMedia.push(data);
+
+        } catch (error) {
+          alert(`Failed to upload ${file.name}: ${error.message}`);
+          console.error(error);
+        }
+      }
+
+      if (uploadedMedia.length) {
+        previewDiv.innerHTML = "";
+        uploadedMedia.forEach(media => {
+          let element;
+          if (media.resource_type === "image" || media.format?.startsWith("image")) {
+            element = document.createElement("img");
+            element.src = media.secure_url;
+            element.alt = media.public_id;
+          } else if (media.resource_type === "video" || media.format?.startsWith("video")) {
+            element = document.createElement("video");
+            element.src = media.secure_url;
+            element.controls = true;
+          }
+          if (element) {
+            previewDiv.appendChild(element);
+          }
+        });
+      } else {
+        previewDiv.innerHTML = "<p>No media uploaded.</p>";
+      }
+    });
+  </script>
+</body>
+</html>

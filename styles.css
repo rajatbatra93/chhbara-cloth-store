@@ -1,0 +1,231 @@
+/* Centering the Our Products section */
+.products {
+    text-align: center;
+    margin: 40px auto;
+}
+
+.products h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Centering the product grid */
+.product-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Styling individual product items */
+.product-item {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    width: 250px;
+}
+
+.product-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.product-item:hover {
+    transform: scale(1.05);
+}
+
+/* Logos Section */
+.logos {
+    text-align: center;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.logo-item {
+    text-align: center;
+}
+
+.logo-item img {
+    max-width: 150px;
+    height: auto;
+}
+
+.logo-item p {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .product-grid,
+    .logo-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar Styling */
+header {
+    background-color: pink;
+    padding: 10px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Centering Our Products Section */
+.products {
+    text-align: center;
+    margin: 40px auto;
+}
+
+.products h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Centering Product Grid */
+.product-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Footer Styling */
+footer {
+    background-color: pink;
+    color: black;
+    text-align: center;
+    padding: 15px;
+    font-weight: bold;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+/* Features Section - Logos in Same Line */
+.features {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Space between logos */
+    flex-wrap: wrap; /* Makes it responsive */
+    margin-top: 20px;
+}
+
+/* Logo Containers */
+.feature {
+    text-align: center;
+}
+
+/* Reduce Logo Size */
+.feature img {
+    max-width: 120px; /* Adjust size */
+    height: auto;
+}
+
+/* Apply Vintage Floral Background */
+header, footer {
+    background: url('vintage-floral-pink.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Apply Chhabra Background */
+body {
+    background: url('peacock.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Ensure text is readable */
+header, footer {
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+}
+
+
+/* Adjust footer padding for readability */
+footer {
+    padding: 10px;
+    position: relative;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1; /* Pushes the footer to the bottom */
+}
+
+footer {
+    background-color: #333;
+    color: black;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+}
+
+
+
+
